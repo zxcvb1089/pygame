@@ -58,3 +58,16 @@ pygame.quit()
 ```
 
 # 過程
+
+# 最後
+想要建立一個 安裝程式檔
+```
+pip install auto-py-to-exe
+```
+在執行
+```
+python -m auto_py_to_exe
+```
+
+把要得檔案放在同一個資料夾，壓縮後再運用了 NSIS 的軟件 創建exe安裝檔 即完成。
+
