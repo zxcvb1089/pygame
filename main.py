@@ -20,7 +20,7 @@ YELLOW = (255,255,0)
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
-pygame.display.set_caption("第一個遊戲")
+pygame.display.set_caption("太空空空生存戰")
 clock = pygame.time.Clock()
 
 #載入圖片
@@ -63,7 +63,15 @@ pygame.mixer.music.load(os.path.join("sound", "background.ogg"))
 pygame.mixer.music.set_volume(0.2)
 
 font_name = os.path.join("font.ttf")
+ROCK_DAMAGE_MULTIPLIER = 1.5
 def draw_text(surf, text, size, x, y):#傳入幾個參數 1.平面上 2.文字 3.文字大小 4.座標
+    global rocks #增添難度 當達到1000分時，讓數度變快，還有石頭的傷害加倍
+    if score > 1000:
+        for rock in rocks:
+            rock.speedy *= 1.03
+        if rock.rect.right > WIDTH:
+            rock.rect.right = WIDTH
+        ROCK_DAMAGE_MULTIPLIER 
     font = pygame.font.Font(font_name, size)#font 文字的物件 傳入的參數 1.字體 2.文字的大小
     text_surface = font.render(text, True, WHITE)#render 渲染出來
     text_rect = text_surface.get_rect()
@@ -329,7 +337,7 @@ while running:
     hits = pygame.sprite.spritecollide(player, rocks, True, pygame.sprite.collide_circle) #spritecollide 這個函式 是矩形的碰撞判斷~~
     for hit in hits:
         new_rock()
-        player.health -= hit.radius * 3
+        player.health -= hit.radius * ROCK_DAMAGE_MULTIPLIER 
         expl = Explosion(hit.rect.center, 'sm')
         all_sprites.add(expl)
         if player.health <= 0:
