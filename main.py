@@ -63,7 +63,7 @@ pygame.mixer.music.load(os.path.join("sound", "background.ogg"))
 pygame.mixer.music.set_volume(0.2)
 
 font_name = os.path.join("font.ttf")
-ROCK_DAMAGE_MULTIPLIER = 1.5
+ROCK_DAMAGE_MULTIPLIER = 1.25
 def draw_text(surf, text, size, x, y):#傳入幾個參數 1.平面上 2.文字 3.文字大小 4.座標
     global rocks #增添難度 當達到1000分時，讓數度變快，還有石頭的傷害加倍
     if score > 1000:
